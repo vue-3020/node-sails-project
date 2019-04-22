@@ -52,8 +52,12 @@
             ></i>
           </el-input>
         </el-form-item>
-          <el-form-item prop="code">
-          <el-input v-model="userInfo.code" prefix-icon="el-icon-goods" placeholder="code"></el-input>
+        <el-form-item prop="code">
+          <el-input
+            v-model="userInfo.code"
+            prefix-icon="el-icon-goods"
+            placeholder="code"
+          ></el-input>
         </el-form-item>
         <div class="login-btn">
           <el-button
@@ -66,6 +70,9 @@
       </el-form>
     </div>
     <div class="neirong">{{this.userInfo}}</div>
+    <div style="color:#fff;font-size:30px;">
+      {{msgData}}
+    </div>
   </div>
 </template>
 <script>
@@ -78,8 +85,9 @@ export default {
       userInfo: {
         username: 'user1',
         password: 'user1',
-        code: ' '
+        code: ' ',
       },
+      msgData: '',
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
         password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
@@ -97,9 +105,10 @@ export default {
           this.loading = true
           //去vuex内容，
           _this.login(_this.userInfo).then((data) => {
-            this.$router.push("/");
+            console.log(data);
+            this.msgData = data.msg
           }).catch(error => {
-            // this.$message.error(error);
+            console.log(error);
           })
           this.loading = false
         } else {
@@ -153,7 +162,7 @@ body,
   left: 50%;
   top: 50%;
   width: 300px;
-   height: 200px;
+  height: 200px;
   margin: -150px 0 0 -190px;
   padding: 40px;
   border-radius: 5px;

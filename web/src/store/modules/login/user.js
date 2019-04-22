@@ -1,5 +1,7 @@
 import Cookies from 'js-cookie'
-import {loginByUsername} from '@/api/login'
+import {
+  loginByUsername
+} from '@/api/login'
 
 const vuesAccount = {
   namespaced: true,
@@ -19,15 +21,22 @@ const vuesAccount = {
 
   },
   actions: {
-    login({ commit}, userInfo) {
+    login({
+      commit
+    }, userInfo) {
       debugger
       const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
       return new Promise((resolve, reject) => {
         loginByUsername(username, userInfo.password, userInfo.code).then(response => {
           //获取后台返回给前端的数据
-          if (response.status == 200 && response.resultCode == 1) {
+          if (response.status == 200 && response.data.resultCode == 1) {
             console.log(response);
+            resolve(response.data) //Promise 返回正确的值
+          } else {
+            reject(response.data.msg) //Promise 返回错误的值
           }
+        }).catch(error => { //没有返回值
+          reject(error)
         })
       })
     }
