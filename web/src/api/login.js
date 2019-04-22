@@ -1,7 +1,7 @@
-// import http from '@/utils/httpAxios'
-// import axios from 'axios'
-// // import Qs from 'qs'
-import { baseHref} from '@/api/server.ip'
+import http from '@/utils/httpAxios'
+import axios from 'axios'
+import Qs from 'qs'
+import { baseHref } from '@/api/server.ip'
 
 // function resorve(path) {
 //   return baseHref + path
@@ -12,10 +12,10 @@ import { baseHref} from '@/api/server.ip'
  */
 
 export function loginByUsername(name, userInfoName, userInfoDelivery, userInfoPegion) {
-  console.log(baseHref);
-  debugger
-  // return http.ajax({
-  //   url: resorve('/user/zhuce'),
-  //   method: 'POST'
-  // })
+    console.log(baseHref);
+    debugger
+    return http.ajax({
+        url: resorve('/user/login'),
+        method: 'get'
+    })
 }

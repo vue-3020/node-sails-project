@@ -52,3 +52,7 @@ module.exports={
     },
 }
 ```
+# 安装数据库
+```
+cnpm i sails-mysql --save
+```
