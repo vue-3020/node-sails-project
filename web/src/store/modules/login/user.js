@@ -21,10 +21,13 @@ const vuesAccount = {
   actions: {
     login({ commit}, userInfo) {
       debugger
-      const username = userInfo.name.trim()
+      const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
       return new Promise((resolve, reject) => {
-        loginByUsername(username,  userInfo.name,userInfo.delivery, userInfo.region).then(response => {
-          const data = response
+        loginByUsername(username, userInfo.password, userInfo.code).then(response => {
+          //获取后台返回给前端的数据
+          if (response.status == 200 && response.resultCode == 1) {
+            console.log(response);
+          }
         })
       })
     }
