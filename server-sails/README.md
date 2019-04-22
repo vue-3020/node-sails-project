@@ -56,3 +56,15 @@ module.exports={
 ```
 cnpm i sails-mysql --save
 ```
+
+# 利用vscode调试页面
+![avatar](./images/3.png)
+
+2现在匹配
+![avatar](./images/4.png)
+5启动会报错是路径的问题
+![avatar](./images/5.png)
+6我们从新修改一下路径
+![avatar](./images/6.png)
+
+7请注意 如何开着 node app.js 就无法打开控制台调试所以我们要关闭node app.js后再打开调试功能

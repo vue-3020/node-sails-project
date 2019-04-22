@@ -12,10 +12,16 @@ import { baseHref } from '@/api/server.ip'
  */
 
 export function loginByUsername(name, userInfoName, userInfoDelivery, userInfoPegion) {
-    console.log(baseHref);
-    debugger
+  console.log(baseHref);
+  const data = {
+    userInfoName,
+    userInfoDelivery,
+    userInfoPegion
+  }
+  debugger
+  //post带参数提交
     return http.ajax({
-        url: resorve('/user/login'),
-        method: 'get'
-    })
+        url: resorve('/user/zhuce'),
+        method: 'POST'
+    },data)
 }

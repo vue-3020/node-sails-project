@@ -13,7 +13,12 @@ module.exports = {
      * `UserController.zhuce()`
      */
     zhuce: function(req, res) {
-        res.send(req.body)
+      if (req.allParams().username.length === 0) {
+        return res.send(200, {
+          resultCode: 0,
+          msg: '请输入账号！',
+        })
+      }
     },
 
 
