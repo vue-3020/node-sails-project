@@ -37,6 +37,7 @@ module.exports={
   } 
 ```
 # 通过路由 查找内容
+生成文件的快捷方法 在命令行输入: sails generate controller box/user zhuce login
 ```
 http://localhost:1337/user/login
 ```
@@ -91,8 +92,16 @@ module.exports={
 ### （11）web\src\components\login.vue前端接收返回值，绑定模板
 ![avatar](./images/16.png)
 
+# 启动数据库
+### 启动数据库  mysql -u root -p
+### mysql登录密码：13520326071
 
-# 安装数据库
+### Navicat for Mysql密码：123456
+
+# 连接数据库流程图
+![avatar](./images/17.png)
+
+# 安装sails-mysql数据库
 (1) 安装
 ```
 cnpm i sails-mysql --save
@@ -102,48 +111,39 @@ cnpm i sails-mysql --save
   someMongodbServer: {
       adapter: 'sails-mysql',
       host: '127.0.0.1',
-      port: 27017,
+      port: 3306,
       user: 'root', //optional
-      password: 'root', //optional
-      database: 'segment ' //optional
+      password: '123456', //optional
+      database: 'sails_data' //数据库的名字
   },
 ```
-（3）erver-sails/config/models.js修改数据库配置
-```
-  connection: 'someMongodbServer',
-```
-（4）erver-sails/config/models.js 修改参数配置,
-```
- migrate: 'safe' //safe 开发人员管理所有模式重构 
-```
-(5) server-sails/api/models/User.js配置数据库表
+（3）server-sails\api\models\User.js 修改数据库配置
 ```
 module.exports = {
-  tableName: 'user',
-  adapter: 'mysql',
-  autoCreatedAt: false,
-  autoUpdatedAt: false,
-  attributes: {
-      id: { columnName: 'uid' },
-      username: {},
-      password: {},
-      code: {},
-  }
+    tableName: 'user',
+    adapter: 'mysql',
+    autoCreatedAt: false,
+    autoUpdatedAt: false,
+    attributes: {
+        Id: {},
+        username: {},
+        password: {},
+        code: {},
+    }
 }
 ```
-(6) 引入到UserController.js里面 和   插入数据库
+（4）server-sails/config/models.js 修改参数配置, safe 开发人员管理所有模式重构
 ```
-let User = require('../models/User');  
-    User.create({ username: 'ee', password: 'ee', code: 'ee' }).exec(function(err, created) {
-        console.log(err);
-        console.log(created); //返回的是创建的对象    
-    })
+ connection: 'someMongodbServer',
+
+ migrate: 'safe'
 ```
-# 启动数据库
-### 启动数据库  mysql -u root -p
-### mysql登录密码：13520326071
 
-### Navicat for Mysql密码：123456
-
-# 连接数据库流程图
-![avatar](./images/17.png)
+(5) 引入到UserController.js里面 和   插入数据库
+```
+ let userInfo = req.allParams()
+  User.create(userInfo).exec(function(err, created) {
+      console.log(err);
+      console.log(created); //返回的是创建的对象    
+  })
+```
