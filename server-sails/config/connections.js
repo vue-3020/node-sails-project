@@ -59,7 +59,7 @@ module.exports.connections = {
     someMongodbServer: {
         adapter: 'sails-mysql',
         host: '127.0.0.1',
-        port: 27017,
+        port: 3306,
         user: 'root', //optional
         password: 'root', //optional
         database: 'segment ' //optional

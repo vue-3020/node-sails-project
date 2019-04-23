@@ -93,6 +93,49 @@ module.exports={
 
 
 # 安装数据库
+(1) 安装
 ```
 cnpm i sails-mysql --save
+```
+（2）server-sails/config/connections.js数据库设置
+```
+  someMongodbServer: {
+      adapter: 'sails-mysql',
+      host: '127.0.0.1',
+      port: 27017,
+      user: 'root', //optional
+      password: 'root', //optional
+      database: 'segment ' //optional
+  },
+```
+（3）erver-sails/config/models.js修改数据库配置
+```
+  connection: 'someMongodbServer',
+```
+（4）erver-sails/config/models.js 修改参数配置,
+```
+ migrate: 'safe' //safe 开发人员管理所有模式重构 
+```
+(5) server-sails/api/models/User.js配置数据库表
+```
+module.exports = {
+  tableName: 'user',
+  adapter: 'mysql',
+  autoCreatedAt: false,
+  autoUpdatedAt: false,
+  attributes: {
+      id: { columnName: 'uid' },
+      username: {},
+      password: {},
+      code: {},
+  }
+}
+```
+(6) 引入到UserController.js里面 和   插入数据库
+```
+let User = require('../models/User');  
+    User.create({ username: 'ee', password: 'ee', code: 'ee' }).exec(function(err, created) {
+        console.log(err);
+        console.log(created); //返回的是创建的对象    
+    })
 ```
