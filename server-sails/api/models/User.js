@@ -4,7 +4,7 @@ module.exports = {
     autoCreatedAt: false,
     autoUpdatedAt: false,
     attributes: {
-        id: { columnName: 'uid' },
+        Id: {},
         username: {},
         password: {},
         code: {},

@@ -61,8 +61,8 @@ module.exports.connections = {
         host: '127.0.0.1',
         port: 3306,
         user: 'root', //optional
-        password: 'root', //optional
-        database: 'segment ' //optional
+        password: '123456', //optional
+        database: 'sails_data' //数据库的名字
     },
 
     /***************************************************************************

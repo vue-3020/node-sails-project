@@ -139,3 +139,10 @@ let User = require('../models/User');
         console.log(created); //返回的是创建的对象    
     })
 ```
+# 启动数据库
+
+### mysql登录密码：13520326071
+### Navicat for Mysql密码：123456
+```
+
+```

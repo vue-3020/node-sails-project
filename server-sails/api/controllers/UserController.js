@@ -4,11 +4,8 @@
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
-let User = require('../models/User')
+
 module.exports = {
-
-
-
     /**
      * `UserController.zhuce()`
      */
