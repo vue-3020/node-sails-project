@@ -140,9 +140,10 @@ let User = require('../models/User');
     })
 ```
 # 启动数据库
-
+### 启动数据库  mysql -u root -p
 ### mysql登录密码：13520326071
-### Navicat for Mysql密码：123456
-```
 
-```
+### Navicat for Mysql密码：123456
+
+# 连接数据库流程图
+![avatar](./images/17.png)
