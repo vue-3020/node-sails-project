@@ -179,3 +179,17 @@ show databases;
 select * from user;
 ```
 ![avatar](./images/22.png)
+
+## 查看表属性
+```
+desc user;
+```
+![avatar](./images/23.png)
+
+## insert 操作
+* 插入内容，列和值是严格对应的，
+* 字符串必须加单引号
+* 数字不必加单引号
+```
+ insert into user (uid,name,age)values(1,'lisi',23);
+```
