@@ -92,9 +92,16 @@ module.exports={
 ### （11）web\src\components\login.vue前端接收返回值，绑定模板
 ![avatar](./images/16.png)
 
-# 启动数据库
-### 启动数据库  mysql -u root -p
-### mysql登录密码：13520326071
+# 启动数据库 (必须是管理员身份启动)
+![avatar](./images/19.png)
+### （1）启动数据库 net start mysql
+![avatar](./images/18.png)
+
+### (2)关闭数据库 net stop mysql
+
+### (3)连接数据库  mysql -u root -p
+### mysql登录密码：123456
+### mac的苹果本mysql登录密码：13520326071
 
 ### Navicat for Mysql密码：123456
 
@@ -147,3 +154,28 @@ module.exports = {
       console.log(created); //返回的是创建的对象    
   })
 ```
+
+# mySql命令行敲代码，
+ (1)显示所有数据库
+```
+show databases;
+```
+![avatar](./images/20.png)
+
+ (2)进入某一个数据库,显示列表(table)内容
+```
+use sails_data;
+show tables;
+```
+![avatar](./images/21.png)
+
+
+ ## 表(table)与库(databases)的概念
+```
+show databases;
+```
+ ## 查询某一张表
+```
+select * from user;
+```
+![avatar](./images/22.png)

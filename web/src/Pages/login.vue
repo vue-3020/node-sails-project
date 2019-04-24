@@ -107,6 +107,7 @@ export default {
           _this.chaXun(_this.userInfo).then((data) => {
             console.log(data);
             this.msgData = data.msg
+              this.$router.push("/home/page1");
           }).catch(error => {
             debugger
              this.msgData = error
