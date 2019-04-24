@@ -1,1 +1,1 @@
-req.allParams().username.length
+params

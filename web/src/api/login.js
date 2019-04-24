@@ -11,17 +11,30 @@ function resorve(path) {
  * 
  */
 
-export function loginByUsername(username, password, code) {
+export function zhuceUsername(username, password,code) {
+  debugger
   console.log(baseHref);
   const data = {
     username,
     password,
     code
   }
-  debugger
   //post带参数提交
     return http.ajax({
       url: resorve('user/zhuce'),
       method: 'POST'
     }, data)
+}
+
+export function getUser(username, password,code) {
+  const data = {
+    username,
+    password,
+    code
+  }
+  debugger
+  return http.ajax({
+    url: resorve('user/chaxunUser'),
+    method: 'POST'
+  },data)
 }

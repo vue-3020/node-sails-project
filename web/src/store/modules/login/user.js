@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 import {
-  loginByUsername
+  zhuceUsername,
+  getUser
 } from '@/api/login'
 
 const vuesAccount = {
@@ -21,13 +22,14 @@ const vuesAccount = {
 
   },
   actions: {
-    login({
+    //注册方法
+    zhuCe({
       commit
     }, userInfo) {
       debugger
       const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
       return new Promise((resolve, reject) => {
-        loginByUsername(username, userInfo.password, userInfo.code).then(response => {
+        zhuceUsername(username, userInfo.password, userInfo.code).then(response => {
           //获取后台返回给前端的数据
           if (response.status == 200 && response.data.resultCode == 1) {
             console.log(response);
@@ -39,8 +41,24 @@ const vuesAccount = {
           reject(error)
         })
       })
+    },
+    //查询方法
+    chaXun({
+      commit
+    }, userInfo) {
+      return new Promise((resolve, reject) => {
+        getUser(userInfo.username, userInfo.password, userInfo.code).then(response => {
+          if (response.status == 200 && response.data.resultCode == 1) {
+            resolve(response.data)
+          } else {
+            reject(response.data.msg)
+          }
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
-  }
+  },
 }
 
 export default vuesAccount

@@ -19,6 +19,16 @@ export default new Router({
       }
     },
     {
+      path: '/register',
+      name: 'register',
+      component: resolve => require(['#/register.vue'], resolve),
+      meta: {
+        title: '注册页面',
+        isUseCache: false,
+        keepAlive: false
+      }
+    },
+    {
       path: '/404',
       component: resolve => require(['&/common/404.vue'], resolve)
     },

@@ -1,6 +1,6 @@
 <template>
   <div class="login-wrap">
-    <div class="ms-title">后台登录系统</div>
+    <div class="ms-title">后台注册系统</div>
     <div class="ms-login">
       <el-form
         :model="userInfo"
@@ -25,7 +25,7 @@
             type="password"
             placeholder="密码"
             v-model="userInfo.password"
-            @keyup.enter.native="submitForm('userInfo')"
+            @keyup.enter.native="Clickzhuce('userInfo')"
             v-if=!isShow
           >
             <i
@@ -42,7 +42,7 @@
             @input="onfocus"
             type="text"
             v-model="userInfo.password"
-            @keyup.enter.native="submitForm('userInfo')"
+            @keyup.enter.native="Clickzhuce('userInfo')"
             v-if=isShow
           >
             <i
@@ -63,10 +63,10 @@
           <el-button
             type="primary"
             :loading="loading"
-            @click="submitForm('userInfo')"
+            @click="Clickzhuce('userInfo')"
           >登录</el-button>
         </div>
-         <el-button type="text" style="margin-top:6px" @click="clickReg">跳转到注册</el-button>
+         <el-button style="margin-top:6px" type="text" @click="clickReg">跳转到登录</el-button>
       </el-form>
     </div>
     <div class="neirong">{{this.userInfo}}</div>
@@ -96,20 +96,18 @@ export default {
   },
   methods: {
     //vuex数据
-    ...mapActions('user', ['chaXun']),
+    ...mapActions('user', ['zhuCe']),
     //登录
-    submitForm(formName) {
+    Clickzhuce(formName) {
       let _this = this
       this.$refs[formName].validate(valid => { // 验证elementUi 表单
         if (valid) {
           this.loading = true
           //去vuex内容，
-          _this.chaXun(_this.userInfo).then((data) => {
+          _this.zhuCe(_this.userInfo).then((data) => {
             console.log(data);
             this.msgData = data.msg
           }).catch(error => {
-            debugger
-             this.msgData = error
             console.log(error);
           })
           this.loading = false
@@ -123,8 +121,8 @@ export default {
         }
       })
     },
-    clickReg(formName){
-        this.$router.push("/register");
+     clickReg(formName){
+        this.$router.push("/Login");
     },
     //切换是否显示密码
     lookPass() {
