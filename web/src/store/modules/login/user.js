@@ -30,6 +30,7 @@ const vuesAccount = {
       const username = userInfo.username.trim() //trim浏览器版本限制：JavaScript Version 1.8
       return new Promise((resolve, reject) => {
         zhuceUsername(username, userInfo.password, userInfo.code).then(response => {
+          debugger
           //获取后台返回给前端的数据
           if (response.status == 200 && response.data.resultCode == 1) {
             console.log(response);

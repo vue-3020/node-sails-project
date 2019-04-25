@@ -1,5 +1,6 @@
 <template>
   <div class="login-wrap">
+    <p style="color:#fff">插入之前先查询数据库是否有相同的名字如果有相同的名字就无法存入内容,并且需要提示用户已经有注册</p>
     <div class="ms-title">后台注册系统</div>
     <div class="ms-login">
       <el-form
@@ -85,7 +86,7 @@ export default {
       userInfo: {
         username: 'user1',
         password: 'user1',
-        code: ' ',
+        code: '',
       },
       msgData: '',
       rules: {
@@ -108,6 +109,10 @@ export default {
             console.log(data);
             this.msgData = data.msg
           }).catch(error => {
+              this.$message({
+                  message: error,
+                  type: 'error'
+                });
             console.log(error);
           })
           this.loading = false
