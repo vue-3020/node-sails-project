@@ -186,10 +186,46 @@ desc user;
 ```
 ![avatar](./images/23.png)
 
-## insert 操作
+# insert 操作
 * 插入内容，列和值是严格对应的，
 * 字符串必须加单引号
 * 数字不必加单引号
 ```
  insert into user (uid,name,age)values(1,'lisi',23);
+```
+## 插入多条数据
+```
+insert into user values (3,'zhangwu',24),(4,'liuliu',34);  
+```
+# update 修改 
+## 表中name =“lilei” 的把年龄修改成8
+```
+update user set age= 8 where name="lilei";
+```
+## 把id=2的修改成 age=9,name='body',
+```
+update user set age=9,name='body' where uid=2;
+```
+# delete 删除
+## 删除uid=4的
+```
+delete from user where uid=4; 
+```
+
+# where 查询
+## 查询uid =2 的这条数据
+```
+select * from user where uid =2;
+```
+## * 代表所有列，我们只查询uid,name列,uid 大于等于2的
+```
+select uid,name from user where uid>=2
+```
+## 查询为真true取出来
+```
+select * from user where 1;
+```
+## 取出第4或者第11的
+```
+select good_id,cat_id, name from goods where cat_id=4 or cat_id=11;
 ```
