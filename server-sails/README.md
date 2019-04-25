@@ -164,7 +164,6 @@ var Q = require('q');
 
 ### mysql 登录密码：123456
 
-### mac 的苹果本 mysql 登录密码：13520326071
 
 ### Navicat for Mysql 密码：123456
 
@@ -282,33 +281,33 @@ desc user;
 ## 插入多条数据
 
 ```
-insert into user values (3,'zhangwu',24),(4,'liuliu',34);
+insert into user (username,password,code)values('ww','ww','ww');
 ```
 
 # update 修改
 
-## 表中 name =“lilei” 的把年龄修改成 8
+## 表中 password =“ww” 的username改成 eeee
 
 ```
-update user set age= 8 where name="lilei";
+update user set username='eeee' where password='ww';
 ```
 
-## 把 id=2 的修改成 age=9,name='body',
+## 把 id=12 的修改成 username='1233',password='444';
 
 ```
-update user set age=9,name='body' where uid=2;
+ update user set username='1233',password='444' where Id=12;
 ```
 
 # delete 删除
 
-## 删除 uid=4 的
+## 删除 Id=12 的
 
 ```
-delete from user where uid=4;
+delete from user where Id=12;
 ```
 
-# where 查询
-
+# 查询有五种语句（where,group,having,order by,limit）
+## （1）where语句
 ## 查询 uid =2 的这条数据
 
 ```
@@ -327,8 +326,47 @@ select uid,name from user where uid>=2
 select * from user where 1;
 ```
 
-## 取出第 4 或者第 11 的
+## 取出Id= 4 和 Id=11 的（ Id，usernam，password）信息
 
 ```
-select good_id,cat_id, name from goods where cat_id=4 or cat_id=11;
+select Id ,username,password from user where Id=2 or Id=13;
 ```
+## null 的应用
+* null 代表没有值，好比我们都没有农行账户，我们比较一下谁在农行更有钱，没法比，null 不等于null
+* 查询表里等于null的
+```
+select * from user where password is null;
+```
+查询表里不等于null
+```
+select * from user where password is not null;
+```
+## (2) group分组和统计函数
+* max(), 求最多
+* count(),求个数
+* avg(), 求平均数
+* min(), 求最小
+* sum()，求总和
+```
+ select max(shop_price) from goods;
+ select count(shop_price) from goods;
+ select avg(shop_price) from goods;
+ select min(shop_price) from goods;
+ select sum(shop_price) from goods;
+```
+![avatar](./images/24.png)
+
+## 进行分组
+统计个数
+```
+select cat_id,count(*) from goods group by cat_id;
+```
+![avatar](./images/26.png)
+
+## 查询每组中shop_price最大的， cat_id 是一样的是一组
+```
+select cat_id,max(shop_price) from goods group by cat_id;
+```
+![avatar](./images/27.png)
+
+## 
