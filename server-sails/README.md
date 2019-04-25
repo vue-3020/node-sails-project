@@ -369,4 +369,39 @@ select cat_id,max(shop_price) from goods group by cat_id;
 ```
 ![avatar](./images/27.png)
 
-## 
+## 排序 order by,
+* desc 降序
+* 升序 asc[默认asc]
+* 显示  goods_id,cat_id,goods_name,shop_price 这几行数据，cat_id 升序排列
+```
+//升序
+ select  goods_id,cat_id,goods_name,shop_price from goods order by cat_id asc;
+
+//降序
+  select  goods_id,cat_id,goods_name,shop_price from goods order by cat_id desc;
+```
+![avatar](./images/28.png)
+
+## limit取出某几列商品 
+从goods表里先 排序再取出前三条，
+```
+select goods_id,goods_name,shop_price from goods order by shop_price desc limit 3;
+```
+取出点击量前三名到前5名的商品,从第二个开始，选取三个；
+```
+select goods_id,goods_name,shop_price from goods order by shop_price desc limit 3;
+```
+
+## 查询最大的商品
+先查出商品表里面最大的id,
+在把查出的最大id插入到 查询表中
+```
+select goods_id,goods_name from goods where goods_id in (select max(goods_id) from goods);
+```
+![avatar](./images/29.png)
+
+## 查出每一组中最最新的数据
+```
+select goods_id,goods_name from goods where goods_id in (select max(goods_id) from goods group by cat_id);
+```
+![avatar](./images/30.png)
