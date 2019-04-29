@@ -48,7 +48,8 @@ module.exports = {
                     console.log(error);
                     defer.reject(err);
                 } else {
-                    if (results.length > 0) {
+                  if (results.length > 0) {
+                     
                         return res.send(200, {
                             resultCode: 0,
                             msg: '已经被注册了',
@@ -89,7 +90,7 @@ module.exports = {
                     req.session.loginbean = {
                         resultCode: 1,
                         msg: '存储到session里在其他页面可以访问',
-                    }
+                  }
                     console.log(req.session);
                     // res.redirect('/')
 
