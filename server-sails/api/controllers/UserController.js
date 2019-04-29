@@ -3,6 +3,8 @@
  * 1.命令行生成路由： 
 //user为controller名,zhuce和login是方法名 
 sails generate controller user zhuce login 
+// 新增文件夹box
+sails generate controller box/user zhuce login
  *
  * @description :: Server-side logic for managing users
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers

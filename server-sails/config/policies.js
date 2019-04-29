@@ -1,5 +1,5 @@
 /**
- * Policy Mappings
+ * Policy Mappings  拦截器
  * (sails.config.policies)
  *
  * Policies are simple functions which run **before** your controllers.
@@ -49,13 +49,13 @@ module.exports.policies = {
     // feed : ['isNiceToAnimals', 'hasRabbitFood']
     // }
 
-    //让所有的都有拦截
+    //让所有的都有拦截 \server-sails\api\policies\sessionAuth.js 所以的接口都会走这个方法，
     // "*": 'sessionAuth',
 
     // 拦截 server-sails/api/controllers/MainController.js/index方法
-    MainController: {
-        'index': ['sessionAuth']
-    },
+    // MainController: {
+    //     'index': ['sessionAuth']
+    // },
     //不被拦截
     // UserController: {
     //     'zhuce': true,

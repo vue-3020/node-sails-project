@@ -1,6 +1,6 @@
 /**
  * MainController
- *sails generate controller user main index
+ *sails generate controller Box/xiaomi index
  * 
  * @description :: Server-side logic for managing mains
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
