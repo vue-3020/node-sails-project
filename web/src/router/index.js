@@ -42,7 +42,15 @@ export default new Router({
                 title: '项目管理',
                 isUseCache: false,
               }
-          }]
+          },{
+            path: 'page2',
+            name: 'page2',
+            component: resolve => require(['#/page2.vue'], resolve),
+            meta: {
+              title: '更新数据',
+              isUseCache: false,
+            }
+        }]
         },
           {
             path: '/404',

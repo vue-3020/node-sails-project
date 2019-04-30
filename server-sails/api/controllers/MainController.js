@@ -64,5 +64,36 @@ module.exports = {
       });
     });
   },
+  
+  //删除当前的某一项内容
+  deleteItem: function (req, res) { 
+    var params = req.allParams()
+    var sql = "delete from sanguo where Id=" + params.Id + ";";
+    SanGuo.query(sql,function (err,rows) {
+      if (err){
+        console.log(err);
+      }else {
+        return res.send(200, {
+          resultCode: 1,
+          msg: rows,
+        });
+      }
+    });
+  },
 
+  //更新内容
+  updataItem: function (req, res) { 
+    var params = req.allParams();
+    var sql = "update sanguo set name='"+`${params.name}`+"', jianJie='"+`${params.jianJie}`+"',guoJi='"+`${params.guoJi}`+"' where  Id=" + params.Id + ";"
+    SanGuo.query(sql,function (err,rows) {
+      if (err){
+        console.log(err);
+      }else {
+        return res.send(200, {
+          resultCode: 1,
+          msg: rows,
+        });
+      }
+    });
+  }
 };

@@ -1,9 +1,10 @@
 <template>
   <div>
+    <h2>分页</h2>
     <template>
       <el-table
         :data="getListData"
-        height="250"
+        height="550"
         border
         style="width: 100%"
       >
@@ -30,6 +31,23 @@
           width="180"
         >
         </el-table-column>
+        <el-table-column
+          label="操作"
+          width="180"
+        >
+          <template slot-scope="scope">
+            <el-button
+              @click="deleteClick(scope.row)"
+              type="text"
+              size="small"
+            >删除</el-button>
+            <el-button
+              type="text"
+              size="small"
+               @click="upDataClick(scope.row)"
+            >编辑</el-button>
+          </template>
+        </el-table-column>
       </el-table>
       <el-pagination
         class="fenye"
@@ -51,12 +69,12 @@ export default {
   data() {
     return {
       pageIndex: 1, //当前是第几条
-      pageSize: 5, //没有显示几条
+      pageSize: 10, //没有显示几条
     }
   },
   computed: {
     // 内容存到 mapGetters 将内容写在 src\store\modules\main\queryListVuex.js 页面里
-   ...mapGetters("queryListVuex", ["getListData","getTotalCount"])
+    ...mapGetters("queryListVuex", ["getListData", "getTotalCount"])
   },
 
   created() {
@@ -64,7 +82,7 @@ export default {
     this.queryData()
   },
   methods: {
-     ...mapActions("queryListVuex", ["queryList"]),
+    ...mapActions("queryListVuex", ["queryList", "deleteListItem"]),
 
     handleSizeChange(val) {
       this.pageIndex = val;
@@ -93,6 +111,40 @@ export default {
           })
         }
       })
+    },
+
+    //删除当前这个
+    deleteClick(item) {
+      var _this = this;
+      this.$confirm('是否删除本条信息?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        //确定要删除
+        _this.deleteListItem({
+          Id: item.Id, //获取id通过id删除内容
+        }).then(data => {
+          if (data.status == 200 && data.data.resultCode == 1) {
+            //从新调用查询方法
+            _this.queryData()
+          }
+          console.log(data);
+        })
+      }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          });
+        });
+    },
+
+    // 跳到详情界面，
+    upDataClick(row){
+      this.$router.push({
+       path: "/home/page2",
+       query:row
+      });
     }
   },
 }
